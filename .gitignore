@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+server/.env
+
+# Build Outputs
+build/
+
+# Documentation (Local Only)
+ducumentation/
+screenshots/
+
+# Logs
+*.log
+
+# OS Files
+.DS_Store
+
+
+.agents/

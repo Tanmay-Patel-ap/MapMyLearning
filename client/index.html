@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MapMyLearning</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro">
+        <p class="eyebrow">MapMyLearning</p>
+        <h1>Generate a learning roadmap for any topic.</h1>
+        <p class="summary">
+          Enter one topic and Gemini will return a simple step-by-step roadmap
+          to start learning.
+        </p>
+      </section>
+
+      <section class="generator">
+        <form id="roadmap-form" class="topic-form">
+          <label for="topic">Topic</label>
+          <div class="input-row">
+            <input
+              id="topic"
+              name="topic"
+              type="text"
+              placeholder="Example: Machine Learning"
+              autocomplete="off"
+              required
+            />
+            <button id="submit-button" type="submit">Generate</button>
+          </div>
+        </form>
+
+        <p id="status-message" class="status" aria-live="polite"></p>
+      </section>
+
+      <section id="roadmap-result" class="roadmap-result hidden"></section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+
