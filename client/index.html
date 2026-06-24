@@ -1,45 +1,111 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MapMyLearning</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
+    <nav class="navbar">
+      <a href="/" class="logo">
+        <i class="fas fa-bolt"></i> MapMyLearning
+      </a>
+      <div class="nav-links" id="nav-links">
+        <!-- Will be populated by JS -->
+      </div>
+    </nav>
+
     <main class="app-shell">
-      <section class="intro">
-        <p class="eyebrow">MapMyLearning</p>
-        <h1>Generate a learning roadmap for any topic.</h1>
-        <p class="summary">
-          Enter one topic and Gemini will return a simple step-by-step roadmap
-          to start learning.
-        </p>
-      </section>
-
-      <section class="generator">
-        <form id="roadmap-form" class="topic-form">
-          <label for="topic">Topic</label>
-          <div class="input-row">
-            <input
-              id="topic"
-              name="topic"
-              type="text"
-              placeholder="Example: Machine Learning"
-              autocomplete="off"
-              required
-            />
-            <button id="submit-button" type="submit">Generate</button>
+      <!-- Auth Sections -->
+      <section id="login-section" class="auth-card hidden">
+        <h2>Welcome back</h2>
+        <p>Login to your account to continue</p>
+        <form id="login-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="login-email" required placeholder="name@example.com" />
           </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" required placeholder="••••••••" />
+          </div>
+          <button type="submit" class="btn-primary">Login</button>
         </form>
-
-        <p id="status-message" class="status" aria-live="polite"></p>
+        <div class="auth-footer">
+          Don't have an account? <a href="#" onclick="showSection('register')">Register</a>
+        </div>
       </section>
 
-      <section id="roadmap-result" class="roadmap-result hidden"></section>
+      <section id="register-section" class="auth-card hidden">
+        <h2>Create an account</h2>
+        <p>Start your learning journey today</p>
+        <form id="register-form">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="reg-email" required placeholder="name@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" />
+          </div>
+          <button type="submit" class="btn-primary">Register</button>
+        </form>
+        <div class="auth-footer">
+          Already have an account? <a href="#" onclick="showSection('login')">Login</a>
+        </div>
+      </section>
+
+      <!-- Main App Content -->
+      <div id="main-content">
+        <section class="intro">
+          <p class="eyebrow">MapMyLearning</p>
+          <h1>Generate a learning roadmap for any topic.</h1>
+          <p class="summary">
+            Enter one topic and Gemini will return a simple step-by-step roadmap
+            to start learning.
+          </p>
+        </section>
+
+        <section class="generator">
+          <form id="roadmap-form" class="topic-form">
+            <label for="topic">What do you want to learn?</label>
+            <div class="input-row">
+              <input
+                id="topic"
+                name="topic"
+                type="text"
+                placeholder="Example: Machine Learning"
+                autocomplete="off"
+                required
+              />
+              <button id="submit-button" type="submit" class="btn-primary">Generate</button>
+            </div>
+          </form>
+
+          <p id="status-message" class="status" aria-live="polite"></p>
+        </section>
+
+        <section id="roadmap-result" class="roadmap-result hidden"></section>
+      </div>
+
+      <!-- Dashboard / Profile / Settings Placeholder -->
+      <section id="dashboard-section" class="hidden">
+        <h2>My Dashboard</h2>
+        <p>Coming soon: Your saved roadmaps will appear here.</p>
+      </section>
+
+      <section id="profile-section" class="hidden">
+        <h2>My Profile</h2>
+        <div id="user-profile-data"></div>
+      </section>
     </main>
 
     <script src="/app.js"></script>
   </body>
 </html>
-

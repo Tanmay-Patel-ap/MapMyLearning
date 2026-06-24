@@ -12,6 +12,9 @@ build/
 ducumentation/
 screenshots/
 
+# Reference Repos (Local Only)
+reference/
+
 # Logs
 *.log
 
