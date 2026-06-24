@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MapMyLearning</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
@@ -13,12 +13,10 @@
         <i class="fas fa-bolt"></i> MapMyLearning
       </a>
       <div class="nav-links" id="nav-links">
-        <!-- Will be populated by JS -->
       </div>
     </nav>
 
     <main class="app-shell">
-      <!-- Auth Sections -->
       <section id="login-section" class="auth-card hidden">
         <h2>Welcome back</h2>
         <p>Login to your account to continue</p>
@@ -34,7 +32,7 @@
           <button type="submit" class="btn-primary">Login</button>
         </form>
         <div class="auth-footer">
-          Don't have an account? <a href="#" onclick="showSection('register')">Register</a>
+          Don't have an account? <a href="javascript:void(0)" onclick="window.showSection('register')">Register</a>
         </div>
       </section>
 
@@ -57,11 +55,10 @@
           <button type="submit" class="btn-primary">Register</button>
         </form>
         <div class="auth-footer">
-          Already have an account? <a href="#" onclick="showSection('login')">Login</a>
+          Already have an account? <a href="javascript:void(0)" onclick="window.showSection('login')">Login</a>
         </div>
       </section>
 
-      <!-- Main App Content -->
       <div id="main-content">
         <section class="intro">
           <p class="eyebrow">MapMyLearning</p>
@@ -73,12 +70,11 @@
         </section>
 
         <section class="generator">
-          <form id="roadmap-form" class="topic-form">
+          <form id="roadmap-form">
             <label for="topic">What do you want to learn?</label>
             <div class="input-row">
               <input
                 id="topic"
-                name="topic"
                 type="text"
                 placeholder="Example: Machine Learning"
                 autocomplete="off"
@@ -87,14 +83,12 @@
               <button id="submit-button" type="submit" class="btn-primary">Generate</button>
             </div>
           </form>
-
           <p id="status-message" class="status" aria-live="polite"></p>
         </section>
 
         <section id="roadmap-result" class="roadmap-result hidden"></section>
       </div>
 
-      <!-- Dashboard / Profile / Settings Placeholder -->
       <section id="dashboard-section" class="hidden">
         <h2>My Dashboard</h2>
         <p>Coming soon: Your saved roadmaps will appear here.</p>
@@ -106,6 +100,6 @@
       </section>
     </main>
 
-    <script src="/app.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

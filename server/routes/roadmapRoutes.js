@@ -4,7 +4,6 @@ const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 
-// You can make this protected if you want only logged in users to generate roadmaps
-router.post('/generate', createRoadmap);
+router.post('/generate', protect, createRoadmap);
 
 module.exports = router;

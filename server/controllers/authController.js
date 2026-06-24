@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 // @desc    Register user
 // @route   POST /api/auth/register
@@ -7,6 +8,8 @@ const jwt = require('jsonwebtoken');
 exports.register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
+    console.log('[Auth] Register request for:', email);
+    console.log('[Auth] Mongoose connection state:', mongoose.connection.readyState);
 
     // Create user
     const user = await User.create({
@@ -15,8 +18,11 @@ exports.register = async (req, res, next) => {
       password
     });
 
+    console.log('[Auth] User registered successfully:', user._id);
     sendTokenResponse(user, 201, res);
   } catch (err) {
+    console.error('[Auth Error] Registration failed:', err.message);
+    console.error('[Auth Error] Full error:', err);
     res.status(400).json({ success: false, error: err.message });
   }
 };
@@ -27,9 +33,11 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log('[Auth] Login request for:', email);
 
     // Validate email & password
     if (!email || !password) {
+      console.warn('[Auth] Missing email or password');
       return res.status(400).json({ success: false, error: 'Please provide an email and password' });
     }
 
@@ -37,6 +45,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
+      console.warn('[Auth] User not found:', email);
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
 
@@ -44,11 +53,14 @@ exports.login = async (req, res, next) => {
     const isMatch = await user.matchPassword(password);
 
     if (!isMatch) {
+      console.warn('[Auth] Invalid password for:', email);
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
 
+    console.log('[Auth] User logged in successfully:', user._id);
     sendTokenResponse(user, 200, res);
   } catch (err) {
+    console.error('[Auth Error] Login failed:', err.message);
     res.status(400).json({ success: false, error: err.message });
   }
 };
@@ -58,9 +70,12 @@ exports.login = async (req, res, next) => {
 // @access  Private
 exports.getMe = async (req, res, next) => {
   try {
+    console.log('[Auth] Get current user request:', req.user?.id);
     const user = await User.findById(req.user.id);
+    console.log('[Auth] Current user found:', user.email);
     res.status(200).json({ success: true, data: user });
   } catch (err) {
+    console.error('[Auth Error] Get current user failed:', err.message);
     res.status(400).json({ success: false, error: err.message });
   }
 };
@@ -81,6 +96,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     options.secure = true;
   }
 
+  console.log('[Auth] Sending token response');
   res
     .status(statusCode)
     .cookie('token', token, options)
