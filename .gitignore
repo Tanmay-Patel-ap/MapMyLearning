@@ -9,7 +9,7 @@ server/.env
 build/
 
 # Documentation (Local Only)
-ducumentation/
+documentation/
 screenshots/
 
 # Reference Repos (Local Only)

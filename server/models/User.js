@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  bookmarks: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'PublicRoadmap'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

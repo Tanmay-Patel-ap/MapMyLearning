@@ -1,5 +1,6 @@
 import { currentUser, navLinks } from './state.js';
 import { logout } from './auth.js';
+import { loadDashboard } from './dashboard.js';
 
 export function updateNav() {
     console.log('[UI] Updating navigation');
@@ -13,14 +14,14 @@ export function updateNav() {
             <i class="fas fa-chevron-down"></i>
             </div>
             <div class="dropdown" id="user-dropdown">
+            <a href="javascript:void(0)" class="dropdown-item" onclick="window.showSection('dashboard')">
+                <i class="fas fa-home"></i> Home
+            </a>
             <a href="javascript:void(0)" class="dropdown-item" onclick="window.showSection('profile')">
                 <i class="fas fa-user"></i> My Profile
             </a>
-            <a href="javascript:void(0)" class="dropdown-item" onclick="window.showSection('dashboard')">
-                <i class="fas fa-columns"></i> Dashboard
-            </a>
             <div class="dropdown-divider"></div>
-            <a href="javascript:void(0)" class="dropdown-item" onclick="window.showSection('main')">
+            <a href="javascript:void(0)" class="dropdown-item" onclick="window.openQuestionnaire()">
                 <i class="fas fa-plus"></i> New Roadmap
             </a>
             <div class="dropdown-divider"></div>
@@ -30,8 +31,7 @@ export function updateNav() {
             </div>
         </div>
         `;
-        
-        // Add dropdown toggle logic
+
         const trigger = document.getElementById('user-menu-trigger');
         const dropdown = document.getElementById('user-dropdown');
         if (trigger && dropdown) {
@@ -53,25 +53,31 @@ export function updateNav() {
 export function showSection(sectionId) {
     console.log('[UI] Showing section:', sectionId);
     const sections = [
-        'login-section', 
-        'register-section', 
-        'main-content', 
-        'dashboard-section', 
-        'profile-section'
+        'login-section',
+        'register-section',
+        'dashboard-view',
+        'viewer-view'
     ];
     sections.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
     });
 
-    if (sectionId === 'main') {
-        document.getElementById('main-content').classList.remove('hidden');
+    if (sectionId === 'dashboard') {
+        const dv = document.getElementById('dashboard-view');
+        if (dv) {
+            dv.classList.remove('hidden');
+            loadDashboard();
+        }
     } else {
         const target = document.getElementById(`${sectionId}-section`);
         if (target) target.classList.remove('hidden');
     }
+
+    if (sectionId === 'viewer') {
+        document.getElementById('viewer-view').classList.remove('hidden');
+    }
 }
 
-// Make functions available globally for inline onclick handlers
 window.showSection = showSection;
 window.logout = logout;

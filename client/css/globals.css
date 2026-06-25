@@ -24,9 +24,10 @@ body {
 }
 
 .app-shell {
-  width: min(1080px, calc(100% - 32px));
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 48px clamp(16px, 4vw, 48px);
 }
 
 .hidden {

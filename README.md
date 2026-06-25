@@ -1,29 +1,31 @@
 # MapMyLearning
 
-MapMyLearning is an AI-powered educational platform designed to simplify learning by generating structured, step-by-step roadmaps for any topic using the Google Gemini API.
+MapMyLearning is an AI-powered educational platform that generates interactive, roadmap.sh-style learning roadmaps for any topic using the Google Gemini API.
 
 ---
 
-## Current Status: v0.2.0-modular-auth-express 🚀
-
-This version introduces a professional, modular backend architecture and a full user authentication system.
+## Current Status: v0.3.0 — Dashboard & Public Roadmaps
 
 ### Key Features
-* **Modular Backend Architecture**: Server logic is divided into controllers, models, routes, and services for maximum maintainability.
-* **User Authentication**: Secure Signup, Login, and Profile management using JWT (JSON Web Tokens) and Bcrypt password hashing.
-* **Modern Dark UI**: A complete redesign with a sleek dark theme, responsive navigation, and interactive user menus.
-* **Database Integration**: Powered by MongoDB for future persistence of user-generated roadmaps.
-* **Express.js Framework**: Migrated from a basic HTTP server to a robust Express.js setup.
-* **Enhanced AI Integration**: Improved roadmap generation logic with dedicated services and better parsing.
+* **Dashboard**: roadmap.sh-style dashboard with personal roadmaps, bookmarked roadmaps, and categorized public roadmaps (Role Based / Skill Based).
+* **Public Roadmaps**: Curated roadmaps seeded in the database, grouped by category.
+* **Bookmarks**: Heart icon toggle on public roadmap cards — instantly adds/removes from the bookmarked section without page refresh.
+* **Roadmap Viewer**: Dedicated viewer to explore roadmap steps and resources.
+* **AI Generation**: Generate custom roadmaps via Gemini AI with topic, category (role/skill), and goal specification.
+* **User Authentication**: Secure Signup, Login, and Profile management using JWT and Bcrypt password hashing.
+* **Modular Backend**: Server logic divided into controllers, models, routes, and services.
+* **Responsive Design**: Dark theme UI with consistent `clamp()` side padding and `max-width: 1200px` centered layout.
+* **Questionnaire Modal**: Step-by-step topic input with category toggle and goal/visibility options before generation.
 
 ---
 
 ## How It Works
 
-1. **User Auth**: Create an account or login to access personalized features.
-2. **Topic Generation**: Enter a topic, and the system coordinates with Gemini AI.
-3. **Modular Processing**: Requests flow through specialized routes and controllers to the AI service.
-4. **Interactive Result**: View your custom roadmap with suggested resources in a modern, card-based layout.
+1. **Dashboard**: Browse public roadmaps grouped by "Role Based" and "Skill Based" categories.
+2. **Bookmark**: Click the heart icon on any public roadmap to save it to your bookmarked section.
+3. **Generate**: Click "Create New" → fill in topic, category, goal → AI generates a structured roadmap.
+4. **View**: Click a roadmap card to open the viewer with detailed steps and resources.
+5. **Save**: From the viewer, save a public roadmap to your personal collection.
 
 ---
 
@@ -33,7 +35,7 @@ This version introduces a professional, modular backend architecture and a full 
 * **Backend**: Node.js, Express.js
 * **Database**: MongoDB (Mongoose)
 * **Auth**: JWT, BcryptJS
-* **AI**: Google Gemini API (`gemini-3.5-flash`)
+* **AI**: Google Gemini API
 
 ---
 
@@ -53,7 +55,12 @@ JWT_EXPIRE=30d
 PORT=5000
 ```
 
-### 3. Installation & Run
+### 3. Seed Public Roadmaps
+```bash
+node server/seed/seedPublicRoadmaps.js
+```
+
+### 4. Installation & Run
 ```bash
 # Install dependencies
 npm install
@@ -67,11 +74,10 @@ The application will be available at `http://localhost:5000`.
 
 ## Project Evolution
 
-This project is built to scale step-by-step:
 - **v0.1.0**: Basic Gemini roadmap generation (Completed ✅)
 - **v0.2.0**: Express, MongoDB, and User Auth (Completed ✅)
-- **v0.3.0 (Upcoming)**: React migration and roadmap saving/sharing.
-- **Future**: Interactive AI-generated quizzes and social learning features.
+- **v0.3.0**: Dashboard, public roadmaps, bookmarks, viewer (Current ✅)
+- **v0.4.0 (Upcoming)**: Interactive graph canvas with node-based roadmap viewer, sidebar drawer, and per-node progress tracking.
 
 ---
 

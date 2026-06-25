@@ -68,7 +68,7 @@ function shouldRetryWithAnotherModel(message) {
     message.includes('"status": "RESOURCE_EXHAUSTED"');
 }
 
-exports.generateRoadmap = async (topic) => {
+exports.generateRoadmap = async (topic, goal) => {
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -79,6 +79,8 @@ exports.generateRoadmap = async (topic) => {
   const prompt = [
     "Create a beginner-friendly learning roadmap for this topic:",
     topic,
+    "",
+    `The learner's primary goal is: ${goal}. Tailor the roadmap to this goal.`,
     "",
     "Return only valid JSON with this shape:",
     "{\"title\":\"string\",\"steps\":[{\"title\":\"string\",\"description\":\"string\",\"resources\":[\"string\"]}]}",

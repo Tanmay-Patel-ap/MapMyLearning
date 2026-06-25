@@ -45,7 +45,7 @@ export function setupAuthForms() {
                     console.log('[Auth Client] Login successful');
                     updateAuthToken(data.token);
                     await fetchUserProfile();
-                    showSection('main');
+                    showSection('dashboard');
                 } else {
                     console.warn('[Auth Client] Login failed:', data.error);
                     alert(data.error);
@@ -76,7 +76,7 @@ export function setupAuthForms() {
                     console.log('[Auth Client] Registration successful');
                     updateAuthToken(data.token);
                     await fetchUserProfile();
-                    showSection('main');
+                    showSection('dashboard');
                 } else {
                     console.warn('[Auth Client] Registration failed:', data.error);
                     alert(data.error);
@@ -94,5 +94,5 @@ export function logout() {
     updateCurrentUser(null);
     updateAuthToken(null);
     updateNav();
-    showSection('main');
+    showSection('dashboard');
 }

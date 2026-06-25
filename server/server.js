@@ -6,7 +6,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 
 // Load env vars
-dotenv.config({ path: './.env' });
+dotenv.config({ path: path.join(__dirname, '.env') });
 console.log('[Server] Environment variables loaded');
 
 const app = express();
