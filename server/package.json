@@ -1,19 +1,12 @@
 {
   "name": "map-my-learning",
-  "version": "0.2.0",
-  "description": "MapMyLearning modular Express version with user auth.",
+  "version": "0.3.0",
+  "description": "AI-powered learning roadmap generator",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seed/seedPublicRoadmaps.js"
   },
-  "keywords": [
-    "ai",
-    "roadmap",
-    "gemini",
-    "learning"
-  ],
-  "author": "Aditya",
-  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
@@ -24,4 +17,3 @@
     "mongoose": "^9.7.2"
   }
 }
-

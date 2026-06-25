@@ -1,0 +1,97 @@
+.dashboard-section { margin-bottom: 48px; }
+
+.section-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.section-header-row h2 { margin: 0; font-size: 22px; }
+
+.section-header-row .btn-primary {
+  width: auto;
+  height: 38px;
+  padding: 0 18px;
+  font-size: 13px;
+  margin-left: auto;
+}
+
+.dashboard-section > h2 { font-size: 22px; margin: 0 0 20px; }
+
+.badge-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.badge-header span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 14px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.roadmap-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+  display: flex;
+  flex-direction: column;
+}
+
+.roadmap-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+.roadmap-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.roadmap-card-top h3 { margin: 0; font-size: 16px; font-weight: 700; flex: 1; }
+
+.card-actions { display: flex; align-items: center; gap: 4px; }
+
+.roadmap-card-meta { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+.progress-bar { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.progress-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; }
+.progress-label { font-size: 11px; color: var(--muted); min-width: 28px; text-align: right; }
+
+.bookmark-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.bookmark-btn:hover { color: var(--accent); }
+
+.fa-heart { color: #ef4444; }
+
+.empty-state { color: var(--muted); text-align: center; padding: 40px 0; }
+
+.loading-overlay {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 0; gap: 16px; color: var(--muted);
+}
+.loading-spinner { font-size: 32px; color: var(--accent); }
+.loading-overlay p { margin: 0; font-size: 14px; }
